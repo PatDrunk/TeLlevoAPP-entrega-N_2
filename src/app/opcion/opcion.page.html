@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+<div class="option-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>Seleccione una de las siguientes opciones</h1>
+    </div>
+  <div class="action-button ion-padding">
+    <ion-button [routerLink]="['/pasajero']" size="large" class="option-button">Pasajero</ion-button>
+    <ion-button [routerLink]="['/conductor']" size="large" class="option-button">Conductor</ion-button>
+  </div>
+</div>
+  
+</ion-content>

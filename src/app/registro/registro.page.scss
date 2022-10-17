@@ -1,0 +1,65 @@
+.register-section {
+
+  .heading {
+    margin-top: 5px;
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bolder;
+      color: white;
+    }
+
+    p {
+
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #a8a8a8;
+
+    }
+  }
+
+    .register-form {
+
+      .form-input {
+        position: static;
+        margin-bottom: 15px;
+        color: antiquewhite;
+        ion-item::part(native) {
+          padding-left: 0;
+        }
+
+        ion-label {
+          position: relative;
+          margin-left: 15px;
+          top: 5px;
+        }
+
+        ion-input {
+          font-size: 0.9rem;
+          --padding-start: 35px;
+          --pading-top: 35px;
+          color: #040404;
+        }
+
+      }
+    }
+    .action-button {
+      text-align: center;
+      
+      .register-button {
+        --background: #FFCB42;
+        width: 100%;
+        font-weight: bold;
+      }
+
+      p {
+        margin-top: 15px;
+        font-size: 1rem;
+        color: #b5b3b3;
+      }
+
+      a{
+        color: #FFCB42;
+      }
+    }
+  }

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Restablecer</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+
+<ion-content [fullscreen]="true">
+  <div class="animate__animated animate__zoomInDown">
+    <ion-item lines="full">
+      <ion-label position="floating">Ingrese su Usuario</ion-label>
+      <ion-input #txtNombre type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña Nueva</ion-label>
+      <ion-input #txtpassword type="password" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button [routerLink]="['/login']" (click)="onClick()" color="danger" expand="full">Recuperar Contraseña</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start">
+    </ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu menuId="main-menu" contentId="main">
+  <ion-content>
+    <div class="menu-header-bg"></div>
+    <div class="header-container">
+      <img src="../assets/images/alambrito.jpg">
+      <ion-label>
+        <h2></h2>
+        <p>Bienvenido</p>
+      </ion-label>
+    </div>
+
+    <ion-list class="menu-items" lines="none">
+      <ion-item [routerLink]="['/conductor']">
+        <ion-icon name="car-outline"></ion-icon>
+        <ion-label>¡Al auto!</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="map-outline"></ion-icon>
+        <ion-label>Mapa</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="analytics-outline"></ion-icon>
+        <ion-label>Rutas</ion-label>
+      </ion-item>
+      
+      <ion-item (click)="cerrarSesion()">
+        <ion-icon name="exit-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content>
+  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-content>
+      <ion-list *ngFor="let aux of usuarios">
+        <ion-item *ngIf="aux.activo != 'no'">
+          <ion-card>
+            <ion-card-header>
+          <ion-card-title>Nombre conductor: {{ aux.usuario }}</ion-card-title>
+          <ion-card-subtitle>cant° de pasajeros:{{ aux.pasajeros }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-item *ngFor="let aux2 of viajes">
+          <ion-card-content>
+            <ion-card-subtitle>Comienzo: {{aux2.desde}}</ion-card-subtitle>
+            <ion-card-subtitle>Destino: {{aux2.hasta}}</ion-card-subtitle>
+            <ion-card-subtitle>Hora del viaje: {{aux2.hora_viaje}}</ion-card-subtitle>
+            <ion-card-subtitle>Valor del viaje: {{aux2.valor}}</ion-card-subtitle>
+
+          </ion-card-content>
+        </ion-item>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
