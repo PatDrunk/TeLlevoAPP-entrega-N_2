@@ -26,6 +26,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "@types/googlemaps": "^3.43.3",
     "animate.css": "^4.1.1",
     "firebase": "^9.11.0",
     "rxjs": "~6.6.0",

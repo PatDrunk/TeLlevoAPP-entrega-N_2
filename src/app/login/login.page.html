@@ -6,21 +6,23 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+
   <div class="login-section ion-padding">
     <div class="heading ion-padding">
       <h1>TeLlevoApp</h1>
       <p>Inicia sesión para continuar</p>
     </div>
-    <div class="login-form ion-padding">
-      <div class="form-input">
-        <ion-icon name="person-circle-outline"></ion-icon>
-        <ion-item>
-          <ion-label position="floating">Correo</ion-label>
+    
+      <div class="login-form ion-padding">
+        <div class="form-input">
+          <ion-icon name="mail-outline" color="dark"></ion-icon>
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
           <ion-input #txtEmail type="text"></ion-input>
         </ion-item>
       </div>
       <div class="form-input">
-        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input #txtPass type="password"></ion-input>
@@ -32,6 +34,6 @@
       <ion-button size="small" class="login-button" (click)="logingmail()"><ion-icon name="logo-google"></ion-icon></ion-button>
       <ion-button size="small" class="login-button" (click)="logingit()"><ion-icon name="logo-github"></ion-icon></ion-button>
       <p>¿Has olvidado tu contraseña? <a [routerLink]="['/login/restablecer']">Restablecelo aquí</a></p>
-      </div>
+    </div>
   </div>
 </ion-content>

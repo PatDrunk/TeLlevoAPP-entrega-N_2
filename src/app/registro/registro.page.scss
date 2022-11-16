@@ -22,16 +22,17 @@
 
       .form-input {
         position: static;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         color: antiquewhite;
         ion-item::part(native) {
           padding-left: 0;
         }
 
         ion-label {
-          position: relative;
-          margin-left: 15px;
-          top: 5px;
+          position: static;
+          margin-left: 35px;
+          font-size: 0.9rem;
+          top: 3px;
         }
 
         ion-input {

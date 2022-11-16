@@ -10,33 +10,33 @@
 <ion-content color="primary">
   <img src="../../assets/images/navigator.png" class="logo">
   <ion-menu menuId="main-menu" contentId="main">
-    <ion-content>
+    <ion-content color="warning">
       <div class="menu-header-bg"></div>
       <div class="header-container">
-        <img src="../assets/images/alambrito.jpg">
+        <img src="../assets/images/profile.png">
         <ion-label>
           <h2></h2>
           <p>Bienvenido</p>
         </ion-label>
       </div>
   
-      <ion-list class="menu-items" lines="none">
+      <ion-list class="menu-items">
         <ion-item [routerLink]="['/pasajero']">
-          <ion-icon name="car-outline"></ion-icon>
+          <ion-icon name="car-outline" color="dark"></ion-icon>
           <ion-label>¡Veamos un amigo!</ion-label>
         </ion-item>
         <ion-item>
-          <ion-icon name="map-outline"></ion-icon>
+          <ion-icon name="map-outline" color="dark"></ion-icon>
           <ion-label>Mapa</ion-label>
         </ion-item>
   
-        <ion-item>
-          <ion-icon name="analytics-outline"></ion-icon>
+        <ion-item [routerLink]="['/viaje']">
+          <ion-icon name="analytics-outline" color="dark"></ion-icon>
           <ion-label>Rutas</ion-label>
         </ion-item>
         
         <ion-item (click)="cerrarSesion()">
-          <ion-icon name="exit-outline"></ion-icon>
+          <ion-icon name="exit-outline" color="dark"></ion-icon>
           <ion-label>Cerrar sesión</ion-label>
         </ion-item>
       </ion-list>
@@ -48,17 +48,12 @@
     <div class="conductor-form ion-padding">
       <div class="form-input">
         <ion-item>
-          <ion-label position="floating">Ubicación actual</ion-label>
-          <ion-input #txtActual type="text"></ion-input>
-        </ion-item>
-      </div>
-      <div class="form-input">
-        <ion-item>
-          <ion-label position="floating">Destino</ion-label>
+          <ion-label position="floating">Introduce una dirección</ion-label>
           <ion-input #txtDestino type="text"></ion-input>
         </ion-item>
       </div>
       <div class="hour">
+        <ion-label>Seleccione la hora</ion-label>
         <ion-row class="ion-padding">
           <ion-col>
             <ion-datetime presentation="time" [(ngModel)]="hora"></ion-datetime>
@@ -74,8 +69,8 @@
         </div>
     </div>
     <div class="action-button ion-padding">
-      <ion-button expand="block" (click)="viajeIniciado(txtActual,txtDestino)" class="conductor-button">Iniciar viaje</ion-button>
-      <ion-button color="danger" expand="block" (click)="viajeCancelado()" class="conductor-button">Cancelar viaje</ion-button>
+      <ion-button expand="block" (click)="viajeIniciado(txtActual,txtDestino)" color="warning">Iniciar viaje</ion-button>
+      <ion-button expand="block" (click)="viajeCancelado()" color="danger">Cancelar viaje</ion-button>
     </div>
 </div>
 </ion-content>

@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,27 @@ const routes: Routes = [
   {
     path: 'opcion',
     loadChildren: () => import('./opcion/opcion.module').then( m => m.OpcionPageModule)
+  },
+
+  {
+    path: 'mapa', component: MapaComponent
+  },
+  {
+    path: 'viaje',
+
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule)
+      },
+      {
+        path: ':id',
+        loadChildren: () => import('./viaje/detalleviaje/detalleviaje.module').then( m => m.DetalleviajePageModule)
+      }
+    ]
   }
+
+
 ];
 
 @NgModule({
