@@ -1,4 +1,4 @@
-import { Viaje } from './interface/viaje';
+import { Viaje } from '../interface/viaje';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ViajeService {
     {
       id: '1',
       nombre_usuario : 'Pedro',
-      desde: 'Santiago',
+      desde: 'DuocUC',
       hasta: 'Buin',
       hora_viaje : '08:10',
       valor: '$100'

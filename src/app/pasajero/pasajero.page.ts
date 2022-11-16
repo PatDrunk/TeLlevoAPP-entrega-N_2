@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { Usuario } from './../interface/usuarios';
 import { Viaje } from './../interface/viaje';
 import { FirebaseService } from './../services/firebase.service';
-import { ViajeService } from './../viaje.service';
+import { ViajeService } from '../viaje/viaje.service';
 import { RegistroService } from './../registro/registro.service';
 import { Component, OnInit } from '@angular/core';
 

@@ -1,7 +1,7 @@
 import { FirebaseService } from './../services/firebase.service';
 import { Viaje } from './../interface/viaje';
 import { RegistroService } from './../registro/registro.service';
-import { ViajeService } from './../viaje.service';
+import { ViajeService } from '../viaje/viaje.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -16,9 +16,12 @@ export class ConductorPage implements OnInit {
   viaje: []
   hora: any;
 
+  presentingElement = null;
+
   constructor(private fire: FirebaseService ,private activatedRoute: ActivatedRoute , private servicio: ViajeService, private servicio2: RegistroService ,private router: Router) { }
 
   ngOnInit() {
+    this.presentingElement = document.querySelector('.action-button');
 
   }
 
@@ -44,18 +47,18 @@ export class ConductorPage implements OnInit {
             nombre_usuario: 'pedro',
             valor: '$100'
           }
-          this.fire.cargarLoading("Guardando Viaje....")
+          this.fire.cargarLoading("Guardando viaje, espere....")
           this.fire.createDoc(via,'viaje',via.id).then(
             (res) =>{
               this.fire.cerrarLoading()
-              this.fire.mensaje("Viaje Generado Exitosamente!")
+              this.fire.mensaje("¡Viaje generado exitosamente!")
             }
           )
         }
         else{
           Swal.fire({
             icon: 'error',
-            text: 'Debe validar su correo antes de iniciar un viaje!',
+            text: '¡Debe validar su correo antes de iniciar un viaje!',
             heightAuto: false
           })
           this.router.navigate(['/home'])
@@ -67,7 +70,7 @@ export class ConductorPage implements OnInit {
   viajeCancelado(){
     Swal.fire({
       icon: 'error',
-      text: 'El Viaje a sido Cancelado!',
+      text: 'El viaje ha sido cancelado!',
       heightAuto: false
     })
   }
