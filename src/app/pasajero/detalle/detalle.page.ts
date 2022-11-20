@@ -1,3 +1,4 @@
+import { Pasajero } from './../../interface/pasajero';
 import { Viaje } from './../../interface/viaje';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseService } from './../../services/firebase.service';
@@ -14,6 +15,13 @@ export class DetallePage implements OnInit {
 
   id = ''
   viaje = []
+  viaje_pasajero = []
+  pasajero : Pasajero = {
+    id : '',
+    id_viaje : '',
+    nombre : '',
+    recojida : ''
+  }
 
 constructor(private fire: FirebaseService,private ActivatedRoute: ActivatedRoute, private alerta: AlertController, private router: Router
   ,private db: AngularFirestore) {
@@ -24,17 +32,18 @@ constructor(private fire: FirebaseService,private ActivatedRoute: ActivatedRoute
    }
 
   ngOnInit() {
-    this.obtenerViajes()
     this.id
-    console.log(this.obtenerViajes())
-    console.log(this.id)
+    this.obtenerViajes()
+    this.obtenerPasajeros()
+
   }
 
   ionViewWillEnter() {
-    this.obtenerViajes()
     this.id
+    this.obtenerViajes()
+    this.obtenerPasajeros()
+    
   }
-
 
   obtenerViajes(){
     this.fire.getCollection<Viaje>('viaje').subscribe(
@@ -45,5 +54,29 @@ constructor(private fire: FirebaseService,private ActivatedRoute: ActivatedRoute
       (err) => {
       }
     )
+  }
+
+  obtenerPasajeros(){
+    this.fire.getCollection<Pasajero>('pasajero').subscribe(
+      (res) => {
+        this.viaje_pasajero = res;
+      },
+      (err) => {
+      }
+    )
+  }
+
+  agregarPasajero(){
+    const id = this.fire.getId();
+    this.pasajero.id = id;
+    this.guardarPasajero();
+  }
+
+  guardarPasajero(){
+    this.fire.createDoc(this.pasajero,'pasajero',this.pasajero.id)
+    this.db.doc(`pasajero/${this.pasajero.id}`).update({
+    id_viaje:this.id,
+    nombre: 'Pedro',
+    recojida: 'Santiago'});
   }
 }

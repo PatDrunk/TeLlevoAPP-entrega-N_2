@@ -21,9 +21,19 @@
               <ion-card-subtitle>Destino: {{ aux.hasta }}</ion-card-subtitle>
               <ion-card-subtitle>Valor: {{ aux.valor }}</ion-card-subtitle>
             </ion-card-header>
-            <ion-button expand="block" color="warning">Unirse al Viaje</ion-button>
+            <ion-button expand="block" (click)="agregarPasajero()" color="warning">Unirse al Viaje</ion-button>
             <ion-button expand="block" color="">Unete Con QR</ion-button>
           </ion-card>
         </ion-item>
+  </ion-list>
+  <ion-list *ngFor="let aux2 of viaje_pasajero">
+    <ion-item *ngIf="aux2.id_viaje === id">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Pasajero: {{ aux2.nombre }}</ion-card-title>
+          <ion-card-subtitle>Recojida: {{ aux2.recojida }}</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
   </ion-list>
 </ion-content>
