@@ -51,13 +51,11 @@
           <ion-card-title>Nombre conductor: {{ aux.usuario }}</ion-card-title>
           <ion-card-subtitle>cant° de pasajeros:{{ aux.pasajeros }}</ion-card-subtitle>
         </ion-card-header>
-        <ion-item *ngFor="let aux2 of viajes">
-          <ion-card-content>
-            <ion-card-subtitle>Comienzo: {{aux2.desde}}</ion-card-subtitle>
+        <ion-item *ngFor="let aux2 of viajes" [routerLink]="['/pasajero',aux2.id]">
+          <ion-card-content *ngIf="aux2.id_user === aux.id">
+            <ion-card-subtitle>Comienzo: Duoc UC Puente alto</ion-card-subtitle>
             <ion-card-subtitle>Destino: {{aux2.hasta}}</ion-card-subtitle>
             <ion-card-subtitle>Hora del viaje: {{aux2.hora_viaje}}</ion-card-subtitle>
-            <ion-card-subtitle>Valor del viaje: {{aux2.valor}}</ion-card-subtitle>
-
           </ion-card-content>
         </ion-item>
       </ion-card>

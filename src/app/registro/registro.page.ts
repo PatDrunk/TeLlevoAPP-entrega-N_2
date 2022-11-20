@@ -12,23 +12,30 @@ import Swal from 'sweetalert2';
 })
 export class RegistroPage implements OnInit {
 
-  usuarios = []
-  selectedValue: any;
+  usuarios : Usuario = {
+    id : '',
+    usuario : '',
+    password : '',
+    activo : '',
+    pasajeros : '',
+    email: ''
+  }
 
-  constructor(private servicio: RegistroService, private router: Router, private fire: FirebaseService) { }
+  constructor(private servicio: RegistroService, private router: Router, private fire: FirebaseService,) { }
 
   ngOnInit() {
   }
-
-  guardar(txtUsuario,txtPassword,txtPasajeros,txtEmail){
+  
+  /*guardar(txtUsuario,txtPassword,txtPasajeros,txtEmail){
     const usu : Usuario = {
-      id : this.fire.getId(),
+      id : '',
       usuario : txtUsuario.value,
       password : txtPassword.value,
       activo : this.selectedValue,
       pasajeros : txtPasajeros.value
   }
     this.fire.cargarLoading("Guardando Usuario....")
+
     this.fire.createDoc(usu,'usuarios',usu.id).then(
       (res) => {
         const user = this.fire.registro(txtEmail.value, txtPassword.value);
@@ -37,5 +44,23 @@ export class RegistroPage implements OnInit {
         this.fire.mensaje("Usuario Generado Exitosamente!")
       }
     )
+  }*/
+
+  async guardar(){
+    const credenciales = {
+      email: this.usuarios.email,
+      password: this.usuarios.password,
+    }
+    const res = await this.fire.registro(credenciales.email,credenciales.password)
+    const uid = await this.fire.getUid();
+    this.usuarios.id = uid;
+    this.guardarUser();
+    console.log(uid)
+  }
+
+  async guardarUser(){
+    const path = 'usuarios';
+    const name = this.usuarios.usuario;
+    this.fire.createDoc(this.usuarios,path,this.usuarios.id)
   }
 }

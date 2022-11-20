@@ -35,7 +35,17 @@ const routes: Routes = [
   },
   {
     path: 'pasajero',
-    loadChildren: () => import('./pasajero/pasajero.module').then( m => m.PasajeroPageModule)
+    //loadChildren: () => import('./pasajero/pasajero.module').then( m => m.PasajeroPageModule)
+    children:[
+      {
+        path: '',
+        loadChildren: () => import('./pasajero/pasajero.module').then( m => m.PasajeroPageModule)
+      },
+      {
+        path: ':id',
+        loadChildren: () => import('./pasajero/detalle/detalle.module').then(m =>m.DetallePageModule)
+      }
+    ]
   },
   {
     path: 'opcion',

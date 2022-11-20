@@ -15,11 +15,11 @@ export class ViajePage implements OnInit {
   constructor(private servicio: ViajeService, private router: Router, private alerta: AlertController) { }
 
   ngOnInit() {
-    this.viajes = this.servicio.obtenerViajes()
+    /*this.viajes = this.servicio.obtenerViajes()*/
   }
 
   ionViewWillEnter() {
-    this.viajes = this.servicio.obtenerViajes()
+    /*this.viajes = this.servicio.obtenerViajes()*/
   }
 
 }

@@ -25,7 +25,7 @@
           <ion-icon name="car-outline" color="dark"></ion-icon>
           <ion-label>¡Veamos un amigo!</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item [routerLink]="['/mapa']">
           <ion-icon name="map-outline" color="dark"></ion-icon>
           <ion-label>Mapa</ion-label>
         </ion-item>
@@ -49,28 +49,34 @@
       <div class="form-input">
         <ion-item>
           <ion-label position="floating">Introduce una dirección</ion-label>
-          <ion-input #txtDestino type="text"></ion-input>
+          <ion-input [(ngModel)]=viaje.hasta type="text"></ion-input>
         </ion-item>
       </div>
+      <div class="conductor-form ion-padding">
+        <div class="form-input">
+          <ion-item>
+            <ion-label position="floating">Introduce el conductor</ion-label>
+            <ion-input [(ngModel)]=viaje.nombre_usuario type="text"></ion-input>
+          </ion-item>
+        </div>
       <div class="hour">
         <ion-label>Seleccione la hora</ion-label>
         <ion-row class="ion-padding">
           <ion-col>
-            <ion-datetime presentation="time" [(ngModel)]="hora"></ion-datetime>
+            <ion-datetime presentation="time" [(ngModel)]=viaje.hora_viaje></ion-datetime>
           </ion-col>
         </ion-row>
         </div>
         <div class="map">
           <ion-row class="ion-padding">
             <ion-col>
-              <img src="https://i.gifer.com/A3q1.gif" style="height: 350px;">
+
             </ion-col>
           </ion-row>
         </div>
     </div>
     <div class="action-button ion-padding">
-      <ion-button expand="block" (click)="viajeIniciado(txtActual,txtDestino)" color="warning">Iniciar viaje</ion-button>
+      <ion-button expand="block" (click)="viajeIniciado()" color="warning">Iniciar viaje</ion-button>
       <ion-button expand="block" (click)="viajeCancelado()" color="danger">Cancelar viaje</ion-button>
     </div>
-</div>
-</ion-content>
+  </div>

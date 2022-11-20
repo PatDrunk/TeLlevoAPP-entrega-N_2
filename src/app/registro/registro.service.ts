@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class RegistroService {
 
-  private usuario: Usuario [] = [
+  /*private usuario: Usuario [] = [
     {
       id : '1',
       usuario : 'pedro',
@@ -38,7 +38,7 @@ export class RegistroService {
     }
   }
 
-  agregarUsuario(usuario: string, password: string, activo: string, pasajeros: string){
+  /*agregarUsuario(usuario: string, password: string, activo: string, pasajeros: string){
     this.usuario.push({
       usuario,password,activo,pasajeros, id: this.usuario.length + 1 + ""
     })
@@ -49,5 +49,5 @@ export class RegistroService {
       return aux.id !== id
     })
 
-  }
+  }*/
 }

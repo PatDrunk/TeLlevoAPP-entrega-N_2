@@ -22,24 +22,24 @@
       <div class="form-input ion-padding">
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input #txtUsuario type="text" required></ion-input>
+          <ion-input [(ngModel)]= usuarios.usuario type="text" required></ion-input>
         </ion-item>
       </div>
       <div class="form-input ion-padding">
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input #txtPassword type="password" required></ion-input>
+          <ion-input [(ngModel)]= usuarios.password type="password" required></ion-input>
         </ion-item>
       </div>
       <div class="form-input ion-padding">
         <ion-item>
           <ion-label position="floating">Correo</ion-label>
-          <ion-input #txtEmail type="text" required></ion-input>
+          <ion-input [(ngModel)]= usuarios.email type="text" required></ion-input>
         </ion-item>
       </div>
       <div class="radio-group">
         <ion-radio-group 
-        [(ngModel)]="selectedValue">
+        [(ngModel)]= usuarios.activo>
           <ion-item>
                 <ion-label>Tengo vehiculo</ion-label>
                 <ion-radio slot="end" value="si"></ion-radio>
@@ -53,12 +53,12 @@
       <div class="form-input">
         <ion-item>
         <ion-label position="floating">Cantidad de pasajeros</ion-label>
-        <ion-input #txtPasajeros type="text"></ion-input>
+        <ion-input [(ngModel)]= usuarios.pasajeros type="text"></ion-input>
       </ion-item>
       </div>
     </div>
     <div class="action-button ion-padding">
-      <ion-button class="register-button" (click)="guardar(txtUsuario,txtPassword,txtPasajeros,txtEmail)">Registrarse</ion-button>
+      <ion-button class="register-button" (click)="guardar()">Registrarse</ion-button>
     </div>
 </div>
 </div>

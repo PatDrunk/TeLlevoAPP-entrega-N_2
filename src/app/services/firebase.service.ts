@@ -103,4 +103,13 @@ export class FirebaseService {
   async loginGit(){
     return this.auten.signInWithPopup( new GithubAuthProvider())
   }
+
+  async getUid(){
+    const user = await this.auten.currentUser;
+    if (user === null) {
+      return null;
+    } else{
+      return user.uid;
+    }
+  }
 }

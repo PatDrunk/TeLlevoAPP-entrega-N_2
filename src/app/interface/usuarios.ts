@@ -3,5 +3,6 @@ export interface Usuario {
     usuario : string,
     password : string,
     activo : string,
-    pasajeros : string
+    pasajeros : string,
+    email: string;
 }

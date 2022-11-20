@@ -27,7 +27,7 @@ export class PasajeroPage implements OnInit {
   ionViewWillEnter() {
     this.validacion()
   }
-
+  
   obtenerViajes(){
     this.fire.getCollection<Viaje>('viaje').subscribe(
       (res) => {
