@@ -1,3 +1,4 @@
+import { QRCodeModule } from 'angularx-qrcode';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { DetallePage } from './detalle.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DetallePageRoutingModule
+    DetallePageRoutingModule,
+    QRCodeModule
   ],
   declarations: [DetallePage]
 })

@@ -1,8 +1,9 @@
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { Pasajero } from './../../interface/pasajero';
 import { Viaje } from './../../interface/viaje';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseService } from './../../services/firebase.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -11,7 +12,12 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './detalle.page.html',
   styleUrls: ['./detalle.page.scss'],
 })
+
 export class DetallePage implements OnInit {
+
+    // https://www.npmjs.com/package/angularx-qrcode
+  qrCodeString = 'Se Registro en el viaje';
+  scannedResult: any;
 
   id = ''
   viaje = []
@@ -44,6 +50,56 @@ constructor(private fire: FirebaseService,private ActivatedRoute: ActivatedRoute
     this.obtenerPasajeros()
     
   }
+
+  async checkPermission() {
+    try {
+      // check or request permission
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (status.granted) {
+        // the user granted permission
+        return true;
+      }
+      return false;
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  async startScan() {
+    try {
+      const permission = await this.checkPermission();
+      if(!permission) {
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      if(result?.hasContent) {
+        this.agregarPasajero();
+        this.scannedResult = result.content;
+        console.log(this.scannedResult);
+      }
+    } catch(e) {
+      console.log(e);
+      this.stopScan();
+    }
+  }
+
+  stopScan() {
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
+  }
+
+  ngOnDestroy(): void {
+      this.stopScan();
+  }
+
+
+  
 
   obtenerViajes(){
     this.fire.getCollection<Viaje>('viaje').subscribe(

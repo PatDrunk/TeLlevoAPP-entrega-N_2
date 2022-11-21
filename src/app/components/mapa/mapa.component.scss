@@ -1,6 +1,6 @@
 .mapa {
-  width: 600px;
-  height: 600px;
+  width: 300px;
+  height: 300px;
 }
 #inputPlaces{
 padding: 10px;
@@ -8,9 +8,20 @@ padding: 10px;
   height: 40px;
 }
 
+ion-content{
+  background: transparent;
+}
+
+ion-card-content{
+  background: transparent;
+}
+
+
 
 body {
   margin: 0;
+  background: transparent;
+
 }
 
 .sb-title {

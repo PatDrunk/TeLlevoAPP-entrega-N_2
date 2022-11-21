@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { FirebaseService } from './../../services/firebase.service';
+
 
 @Component({
   selector: 'app-mapa',
@@ -9,6 +11,7 @@ import { ElementRef, ViewChild, Renderer2 } from '@angular/core';
   styleUrls: ['./mapa.component.scss']
 })
 export class MapaComponent implements OnInit {
+
 
   @ViewChild('divMap') divMap!: ElementRef;
   @ViewChild('inputPlaces') inputPlaces!: ElementRef;
@@ -19,7 +22,7 @@ export class MapaComponent implements OnInit {
   formMapas!: FormGroup;
 
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private servicio : FirebaseService) {
     this.markers = [];
 
     this.formMapas = new FormGroup({
@@ -29,7 +32,7 @@ export class MapaComponent implements OnInit {
       referencia: new FormControl(''),
       ciudad: new FormControl(''),
       provincia: new FormControl(''),
-      region: new FormControl('')
+      region: new FormControl(''),
     })
   }
 
@@ -55,17 +58,14 @@ export class MapaComponent implements OnInit {
 
 
     } else {
-      console.log("Navegador no compatible")
+      console.log("navegador no compatible")
     }
 
   };
 
-
-
   onSubmit() {
-    console.log("Datos del formulario: ", this.formMapas.value)
+    console.log("Datos del formulario: ", this.formMapas.value.direccion)
   };
-
 
   //calcular ruta
   mapRuta() {
@@ -77,8 +77,8 @@ export class MapaComponent implements OnInit {
 
     directionService.route({
 
-      origin: 'Quilpué, Chile',
-      destination: 'Viña del Mar, Chile',
+      origin: 'Duoc puente alto',
+      destination:  this.mapa.getCenter(),
       travelMode: google.maps.TravelMode.DRIVING
 
     }, resultado => {
@@ -91,6 +91,7 @@ export class MapaComponent implements OnInit {
 
   }
 
+
   private cargarAutocomplete() {
 
     const autocomplete = new google.maps.places.Autocomplete(this.renderer.selectRootElement(this.inputPlaces.nativeElement), {
@@ -101,12 +102,11 @@ export class MapaComponent implements OnInit {
       types: ["address"],
     })
 
-
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
 
       const place: any = autocomplete.getPlace();
-      console.log("el lugar completo es:", place)
-
+      console.log("el place completo es:", place)
+       
       this.mapa.setCenter(place.geometry.location);
       const marker = new google.maps.Marker({
         position: place.geometry.location
@@ -146,9 +146,6 @@ export class MapaComponent implements OnInit {
       region: 'administrative_area_level_1'
     };
 
-
-
-
     Object.entries(componentForm).forEach(entry => {
       const [key, value] = entry;
 
@@ -161,7 +158,7 @@ export class MapaComponent implements OnInit {
   cargarMapa(position: any): any {
 
     const opciones = {
-      center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+      center: new google.maps.LatLng(-33.598510621113626, -70.57907100242673),
       zoom: 17,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -170,12 +167,10 @@ export class MapaComponent implements OnInit {
 
     const markerPosition = new google.maps.Marker({
       position: this.mapa.getCenter(),
-      title: "",
+      title: "David",
     });
 
     markerPosition.setMap(this.mapa);
     this.markers.push(markerPosition);
   };
-
-
 }

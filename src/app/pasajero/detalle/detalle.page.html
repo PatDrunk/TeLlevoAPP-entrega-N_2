@@ -18,11 +18,20 @@
             <ion-card-header>
               <ion-card-title>Conductor: {{ aux.nombre_usuario }}</ion-card-title>
               <ion-card-subtitle>Km Recorridos: {{ aux.distancia }}</ion-card-subtitle>
+              <ion-card-subtitle>Comienzo: {{ aux.desde }}</ion-card-subtitle>
               <ion-card-subtitle>Destino: {{ aux.hasta }}</ion-card-subtitle>
               <ion-card-subtitle>Valor: {{ aux.valor }}</ion-card-subtitle>
             </ion-card-header>
             <ion-button expand="block" (click)="agregarPasajero()" color="warning">Unirse al Viaje</ion-button>
-            <ion-button expand="block" color="">Unete Con QR</ion-button>
+            <qrcode 
+            [qrdata]="qrCodeString" 
+            [width]="256" 
+            [errorCorrectionLevel]="'M'">
+          </qrcode>
+          <ion-item *ngIf="scannedResult">
+            <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+          </ion-item>
+            <ion-button expand="block" (click)="startScan()" color="">Unete Con QR</ion-button>
           </ion-card>
         </ion-item>
   </ion-list>
@@ -35,5 +44,5 @@
         </ion-card-header>
       </ion-card>
     </ion-item>
-  </ion-list>
+  </ion-list> 
 </ion-content>

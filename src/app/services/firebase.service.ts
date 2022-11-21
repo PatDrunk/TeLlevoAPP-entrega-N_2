@@ -4,13 +4,21 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
+  private messageSource = new BehaviorSubject<String>('');
+  currentMessage = this.messageSource.asObservable();
+
   constructor(private auten: AngularFireAuth, private database: AngularFirestore, private loading: LoadingController, private toastController :ToastController) { }
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
 
   //data = objeto , patch= coleccion, id=id
   createDoc(data:any, patch: string, id: string){

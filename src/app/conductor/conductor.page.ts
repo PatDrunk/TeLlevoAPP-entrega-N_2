@@ -14,10 +14,13 @@ import Swal from 'sweetalert2';
 })
 export class ConductorPage implements OnInit {
 
+  message:any
+
  viaje : Viaje = {
   id : '',
   id_user: '',
   nombre_usuario: '',
+  desde: 'Duoc Uc Puente Alto',
   hasta: '',
   hora_viaje : '',
   distancia: '',
@@ -29,7 +32,7 @@ export class ConductorPage implements OnInit {
   constructor(private db: AngularFirestore, private fire: FirebaseService ,private activatedRoute: ActivatedRoute , private servicio: ViajeService, private servicio2: RegistroService ,private router: Router) { }
 
   ngOnInit() {
-    this.presentingElement = document.querySelector('.action-button');
+    
   }
 
   /*viajeIniciado(txtActual,txtDestino){
@@ -104,5 +107,7 @@ export class ConductorPage implements OnInit {
     this.fire.logout()
     this.router.navigate(['/home'])
   }
+
+  //Mapa
 
 }

@@ -4,3 +4,9 @@ ion-card{
     margin: 0 !important;
     width: 500px;
   }
+
+  body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }
+  

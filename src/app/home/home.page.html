@@ -17,13 +17,4 @@
     <ion-button [routerLink]="['/registro']" expand="block" class="ion-margin-top">¡Registrate aquí!</ion-button>
     <ion-button [routerLink]="['/login']" expand="block" class="ion-margin-top">Inicia sesión</ion-button>
   </div>
-
-  <div>qr
-    <qrcode [qrdata]="qrCodeString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-    <ion-button (click)="starScan()">Presiona aqui</ion-button>
-    <ion-item *ngIf="scannedResult">
-      <ion-label>Scanned Result: {{scannedResult}}</ion-label>
-    </ion-item>
-  </div>
-
 </ion-content>

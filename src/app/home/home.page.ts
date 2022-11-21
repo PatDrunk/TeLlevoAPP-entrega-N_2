@@ -1,24 +1,47 @@
-import { Usuario } from './../interface/usuarios';
 import { FirebaseService } from './../services/firebase.service';
 import { RegistroService } from './../registro/registro.service';
-import { Component,OnDestroy,OnInit } from '@angular/core';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnDestroy {
+export class HomePage {
 
   usuarios = []
+
+  datocodificado: any;
+  datoscaneado: {};
 
   qrCodeString = 'Hola';
   scannedResult: any;
 
   constructor(private servicio: RegistroService, private fire: FirebaseService ) {}
 
-  async checkPermission  ()  {
+  /*LeerCode(){
+    this.BarcodeScanner.scan().then(barcodeData => {
+      this.datoscaneado = barcodeData;
+    })
+    .catch(err => {
+      console.log('Error', err);
+    });
+  }
+
+  CodificarTexto(){
+    this.BarcodeScanner.encode(this.BarcodeScanner.Encode.TEXT_TYPE, this.datocodificado).then(
+      encodedData => {
+        this.datocodificado = encodedData;
+      },
+      err => {
+        console.log('Un errror ha ocurrido:' + err);
+      }
+    );
+  }
+  */
+
+  /*async checkPermission  ()  {
     try{
       const status = await BarcodeScanner.checkPermission({ force: true });
       if (status.granted) {
@@ -54,32 +77,16 @@ export class HomePage implements OnDestroy {
       console.log(e);
       this.stopScan()
     }
-  }
+  }*/
 
   ngOnInit() {
-    //this.usuarios = this.servicio.obtenerUsuarios()
-    this.obtenerUsuarios();
   }
 
-  ngOnDestroy(): void {
+  /*ngOnDestroy(): void {
     this.stopScan();
-  }
+  }*/
 
   ionViewWillEnter() {
-    //this.usuarios = this.servicio.obtenerUsuarios()
-    this.obtenerUsuarios();
-  }
-
-  obtenerUsuarios(){
-    this.fire.getCollection<Usuario>('usuarios').subscribe(
-      (res) => {
-        this.usuarios = res;
-        console.log(res)
-      },
-      (err) => {
-
-      }
-    )
   }
 
 }

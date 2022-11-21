@@ -44,7 +44,7 @@
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
 
-<div class="conductor-section">
+  <div class="conductor-section">
     <div class="conductor-form ion-padding">
       <div class="form-input">
         <ion-item>
@@ -52,12 +52,14 @@
           <ion-input [(ngModel)]=viaje.hasta type="text"></ion-input>
         </ion-item>
       </div>
+      </div>
       <div class="conductor-form ion-padding">
         <div class="form-input">
           <ion-item>
             <ion-label position="floating">Introduce el conductor</ion-label>
             <ion-input [(ngModel)]=viaje.nombre_usuario type="text"></ion-input>
           </ion-item>
+        </div>
         </div>
       <div class="hour">
         <ion-label>Seleccione la hora</ion-label>
@@ -67,16 +69,7 @@
           </ion-col>
         </ion-row>
         </div>
-        <div class="map">
-          <ion-row class="ion-padding">
-            <ion-col>
-
-            </ion-col>
-          </ion-row>
-        </div>
-    </div>
-    <div class="action-button ion-padding">
       <ion-button expand="block" (click)="viajeIniciado()" color="warning">Iniciar viaje</ion-button>
       <ion-button expand="block" (click)="viajeCancelado()" color="danger">Cancelar viaje</ion-button>
-    </div>
   </div>
+</ion-content>
